@@ -3,12 +3,17 @@ var water, fire, fauna;
 var waterImg, fireImg, faunaImg;
 var mapImg;
 var back
+var monster1, monster2, monster3, monster4, monster1Img, monster2Img, monster3Img, monster4Img;
 
 function preload() {
 waterImg = loadImage("powers/water.png");
 fireImg = loadImage("powers/fire.png");
 faunaImg = loadImage("powers/fauna.png");
 mapImg = loadImage("map.jpg");
+monster1Img = loadImage("monsters/monster1.png");
+monster2Img = loadImage("monsters/monster2.png");
+monster3Img = loadImage("monsters/monster3.png");
+monster4Img = loadImage("monsters/monster4.png");
 }
 
 
@@ -53,9 +58,17 @@ function draw() {
   if(keyDown(LEFT_ARROW)){
     player.x = player.x-10
   }
-  
-  
-
+  monster1= createSprite(Math.round(random(0,800)),Math.round(random(0,800)));
+    monster1.addImage("moving_bat",monster1Img);
+    monster1.visible = false;
+    if(frameCount % 100 === 0){
+       monster1.visible = true;
+        monster1.velocityX = Math.round(random(-4,4));
+        monster1.velocityY = Math.round(random(-4,4));
+        monster1.scale=0.4;
+        monster1.setLifetime(-1);
+       
+    }
   drawSprites();
 }
 
@@ -97,4 +110,3 @@ function spawnObstacles(){
      //obstaclesGroup.add(obstacle);
   }
  }
- 
