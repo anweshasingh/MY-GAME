@@ -4,6 +4,7 @@ var waterImg, fireImg, faunaImg;
 var mapImg;
 var back
 var monster1, monster2, monster3, monster4, monster1Img, monster2Img, monster3Img, monster4Img;
+var waterGroup;
 
 function preload() {
 waterImg = loadImage("powers/water.png");
@@ -19,7 +20,7 @@ monster4Img = loadImage("monsters/monster4.png");
 
 function setup() {
   createCanvas(2000,1000);
-  back = createSprite(1000,500,2000,1000)
+  back = createSprite(1000,500,1500,1000)
   back.addImage("map",mapImg)
   back.scale = 20
   player = createSprite(1000, 500, 50, 50);
@@ -36,11 +37,11 @@ function setup() {
   fauna = createSprite(300,300,50,50);
   fauna.addImage("waterImg", faunaImg);
   fauna.scale = 0.2
-  spawnwater();
+
   spawnObstacles();
   //obstaclesGroup.setLifetimeEach(-1)
   //obstaclesGroup.setVelocityXEach(0);
-  
+  waterGroup = new Group();
 }
 
 function draw() {
@@ -66,18 +67,25 @@ function draw() {
         monster1.velocityX = Math.round(random(-4,4));
         monster1.velocityY = Math.round(random(-4,4));
         monster1.scale=0.4;
-        monster1.setLifetime(-1);
+        monster1.lifetime = -1
        
     }
+
+    if(player.isTouching(waterGroup)){
+      waterGroup.destroyEach();
+    }
+    spawnwater();
   drawSprites();
+
 }
 
 function spawnwater(){
-  if(frameCount%60==0){
-  water = createSprite(600,100,40,10)
+  for(var i = 1; i<5; i++){
+  water = createSprite(Math.round(random(10,60)),100,40,10)
   water.addImage(waterImg)
   water.y = Math.round(random(10,60))
   water.scale=.4
+  waterGroup.add(water)
   //water.velocityX = -4 
     
     //cloud.depth = trex.depth
