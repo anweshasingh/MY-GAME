@@ -20,9 +20,9 @@ monster4Img = loadImage("monsters/monster4.png");
 
 function setup() {
   createCanvas(2000,1000);
-  back = createSprite(1000,500,1500,1000)
+  back = createSprite(1000,500,1500,1000);
   back.addImage("map",mapImg)
-  back.scale = 20
+  back.scale = 4
   player = createSprite(1000, 500, 50, 50);
   player.shapeColor = "red";
 
@@ -118,3 +118,4 @@ function spawnObstacles(){
      //obstaclesGroup.add(obstacle);
   }
  }
+
